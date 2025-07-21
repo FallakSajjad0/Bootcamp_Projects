@@ -27,7 +27,7 @@ a = np.array([84, 85 ,81, 89, 88, 86]
 b = np.array(['Hassan', 'Haider', 'Fallak', 'Ahmad', 'Ali']
             )
 
-x_values = [1, 2, 3, 4, 5]
+x_values = [1, 2, 3, 4, 6]
 y_values = [6, 5, 8, 9, 10]
 plt.plot(x_values, y_values, color = 'red')
 
