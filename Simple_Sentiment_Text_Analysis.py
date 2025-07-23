@@ -46,7 +46,7 @@ Sentiments = {
     "values" : [sentiment0, sentiment1, sentiment2]
     }
 
-# ploting the graph of th sentiments with values
+# ploting the graph of the sentiments with values
 df = pd.DataFrame(Sentiments)
 
 df.plot(x= "Names", y= "values", kind= "line", color = 'black')
