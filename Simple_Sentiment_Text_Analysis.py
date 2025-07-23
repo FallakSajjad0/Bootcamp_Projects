@@ -1,7 +1,7 @@
 from textblob import TextBlob
 from newspaper import Article
 
-url = "https://en.wikipedia.org/wiki/Matthew_Muller"
+url = "https://en.wikipedia.org/wiki/Muhammad_Ali"
 article = Article(url)
 
 article.download()
