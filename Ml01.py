@@ -9,9 +9,6 @@ from sklearn import metrics
 
 data = pd.read_csv("Boston1.csv")
 
-# df_1feet = data[['LSTAT', 'MEDV']]
-# print(df_1feet)
-
 # ploting graph
 
 data.plot(x= "LSTAT", y = "MEDV", style= '.')
