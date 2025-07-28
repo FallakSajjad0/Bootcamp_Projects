@@ -1,5 +1,3 @@
-print(text0)
 
-blob = TextBlob(text0)
-sentiment0 = blob.sentiment.polarity 
-print(f"Sentiment0 : {sentiment0}")
+# y_pred = model.predict(X_test)
+# y_pred = pd.DataFrame(y_pred, columns= [

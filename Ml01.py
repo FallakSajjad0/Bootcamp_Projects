@@ -1,40 +1,56 @@
+# Importes Libreries
+
 import pandas as pd
 import numpy as np
-from sklearn.datasets import load_iris
-from matplotlib import pyplot as plt
+import matplotlib.pyplot as plt
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn import metrics
 
-# self provided data
-data = {"Names": ['Fallak', 'Ahmad', 'Ali'], 
-        "RollNo": [1122, 1023, 1524]
-        }
+data = pd.read_csv("Boston1.csv")
 
-df = pd.DataFrame(data)
+# df_1feet = data[['LSTAT', 'MEDV']]
+# print(df_1feet)
 
-# ploting graph of data
+# ploting graph
 
-df.plot(x= "Names", y= "RollNo", kind= "bar", color="Black")
-plt.title("Name and RollNO")
-plt.xlabel("Names")
-plt.ylabel("RollNo")
+data.plot(x= "LSTAT", y = "MEDV", style= '.')
+plt.xlabel("Lstat ")
+plt.ylabel("Medv")
 plt.show()
 
-# loading data
+# spliting into train and test
 
-iris = load_iris()
+X = pd.DataFrame(data.iloc[:,:-1])
+y = pd.DataFrame(data.iloc[:,-1])
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
-x = iris.data[:, :2]
-y = iris.target
+print(f"X_train SHape is {X_train.shape}")
+print(f"y_train SHape is {y_train.shape}")
+print("-"*30)
+print(f"X_test SHape is {X_test.shape}")
+print(f"y_test SHape is {y_test.shape}")
 
-# ploting loaded data
+# creating Models
 
-plt.figure(figsize= (8, 6))
-for species in range(3):
-    plt.scatter(x[y== species, 0], x[y == species, 1], label = iris.target_names [species])
+model = LinearRegression()
+print(model)
 
-plt.xlabel('Sepal Length(cm)')
-plt.ylabel('Sepal Width(cm)')
-plt.title('Irise dataset - Sepal Features')
-plt.legend()
-plt.show()
+model.fit(X_train, y_train)
 
+print(model.coef_)
+print(model.intercept_)
 
+# Predictions 
+
+y_pred = model.predict(X_test)
+y_pred = pd.DataFrame(y_pred, columns= ['Predicted'])
+
+print(y_pred)
+
+# Calculating Errors
+
+print(f"MAE : {metrics.mean_absolute_error(y_test, y_pred)}")
+print(f"MsE : {metrics.mean_squared_error(y_test, y_pred)}")
+print(f"RMSE : {metrics.root_mean_squared_error(y_test, y_pred)}")
+print(f"RSquared : {metrics.r2_score(y_test, y_pred)}")
